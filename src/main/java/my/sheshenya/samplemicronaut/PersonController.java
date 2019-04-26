@@ -1,12 +1,13 @@
 package my.sheshenya.samplemicronaut;
 
-import io.micrometer.core.lang.Nullable;
+import io.micronaut.core.version.annotation.Version;
 import io.micronaut.http.annotation.Body;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.Post;
 import io.micronaut.validation.Validated;
 
+import javax.annotation.Nullable;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
@@ -15,6 +16,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Controller("/persons")
+//@Secured(SecurityRule.IS_ANONYMOUS)
 @Validated
 public class PersonController {
 
@@ -34,6 +36,7 @@ public class PersonController {
                 .findFirst();
     }
 
+    @Version("1")
     @Get("{?max,offset}")
     public List<Person> findAll(@Nullable Integer max, @Nullable Integer offset) {
         return persons.stream()
@@ -42,4 +45,14 @@ public class PersonController {
                 .collect(Collectors.toList());
     }
 
+    @Version("2")
+    @Get("?max,offset")
+    public List<Person> findAllV2(@NotNull Integer max, @NotNull Integer offset) {
+        return persons.stream()
+                .skip(offset == null ? 0 : offset)
+                .limit(max == null ? 10000 : max)
+                .collect(Collectors.toList());
+    }
+
 }
+

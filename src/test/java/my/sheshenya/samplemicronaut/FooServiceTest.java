@@ -26,6 +26,14 @@ class FooServiceTest {
             );
     }
 
+    @Ignore("dublicate /greeting: GET")  @Test
+    void GET_Greeting_v2_test() {
+            assertEquals(
+                    "Hola, John!",
+                    fooClient.greet_v2("John").getName()
+            );
+    }
+
 
 
     @Test

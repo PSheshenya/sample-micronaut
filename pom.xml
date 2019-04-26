@@ -100,6 +100,15 @@
 		</dependency>
 
 
+		<dependency>
+			<groupId>org.thymeleaf</groupId>
+			<artifactId>thymeleaf</artifactId>
+			<version>3.0.11.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>io.micronaut</groupId>
+			<artifactId>micronaut-views</artifactId>
+		</dependency>
 
 		<dependency>
 			<groupId>io.micronaut.test</groupId>

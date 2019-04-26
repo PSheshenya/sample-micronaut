@@ -58,7 +58,7 @@ public class PersonControllerTest {
     @Test
     public void testFindAll() throws MalformedURLException {
         HttpClient client = HttpClient.create(new URL("http://" + server.getHost() + ":" + server.getPort()));
-        Person[] persons = client.toBlocking().retrieve(HttpRequest.GET("/greeting"), Person[].class);
+        Person[] persons = client.toBlocking().retrieve(HttpRequest.GET("/persons"), Person[].class);
         Assertions.assertEquals(1, persons.length);
     }
 
